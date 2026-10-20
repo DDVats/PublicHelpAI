@@ -517,59 +517,57 @@ class MLEngine:
     ) -> list[dict]:
         """
         Maximal Marginal Relevance (MMR) (Carbonell & Goldstein 1998).
-        Balances relevance with candidate diversity using dense embedding similarity.
+        Vectorized greedy selection balancing relevance with embedding diversity.
         Prevents redundant schemes from the same department from dominating results.
         """
         if len(candidates) <= 1 or self.embeddings is None:
             return candidates
 
-        scheme_to_idx = {sid: i for i, sid in enumerate(self.scheme_ids)}
-        pool_size = min(len(candidates), max(top_k * 3, 30))
+        max_select = min(top_k, 50)
+        pool_size = min(len(candidates), max(max_select * 2, 40))
         pool = candidates[:pool_size]
-        remaining = list(range(len(pool)))
+        tail = candidates[pool_size:]
 
-        selected_indices = [0]
-        remaining.remove(0)
-
-        pool_vecs = []
+        scheme_to_idx = {sid: i for i, sid in enumerate(self.scheme_ids)}
+        indices_in_emb = []
+        valid_pool = []
         for c in pool:
             idx = scheme_to_idx.get(c["id"])
             if idx is not None and idx < len(self.embeddings):
-                pool_vecs.append(self.embeddings[idx])
-            else:
-                pool_vecs.append(None)
+                indices_in_emb.append(idx)
+                valid_pool.append(c)
 
-        while len(selected_indices) < min(top_k, len(pool)) and remaining:
-            best_mmr = -float("inf")
-            best_cand = -1
+        if not valid_pool:
+            return candidates
 
-            for cand_idx in remaining:
-                relevance = pool[cand_idx]["ranking_score"]
-                cand_vec = pool_vecs[cand_idx]
+        vectors = self.embeddings[indices_in_emb]  # shape: (P, 384)
+        relevance_scores = np.array([c["ranking_score"] for c in valid_pool], dtype=np.float32)
 
-                max_sim = 0.0
-                if cand_vec is not None:
-                    for sel_idx in selected_indices:
-                        sel_vec = pool_vecs[sel_idx]
-                        if sel_vec is not None:
-                            sim = float(cand_vec @ sel_vec)
-                            if sim > max_sim:
-                                max_sim = sim
+        max_rel = float(np.max(relevance_scores))
+        min_rel = float(np.min(relevance_scores))
+        if max_rel > min_rel:
+            norm_rel = (relevance_scores - min_rel) / (max_rel - min_rel)
+        else:
+            norm_rel = relevance_scores
 
-                mmr_val = lambda_param * relevance - (1.0 - lambda_param) * max_sim
-                if mmr_val > best_mmr:
-                    best_mmr = mmr_val
-                    best_cand = cand_idx
+        selected = [0]
+        unselected = set(range(1, len(valid_pool)))
+        sim_matrix = np.dot(vectors, vectors.T)
 
-            if best_cand != -1:
-                selected_indices.append(best_cand)
-                remaining.remove(best_cand)
-            else:
-                break
+        while len(selected) < min(max_select, len(valid_pool)) and unselected:
+            unselected_list = list(unselected)
+            sub_sims = sim_matrix[unselected_list][:, selected]
+            max_sims = np.max(sub_sims, axis=1)
 
-        reordered = [pool[i] for i in selected_indices]
-        unselected = [pool[i] for i in remaining] + candidates[pool_size:]
-        return reordered + unselected
+            mmr_scores = lambda_param * norm_rel[unselected_list] - (1.0 - lambda_param) * max_sims
+            best_idx = int(np.argmax(mmr_scores))
+            best_cand = unselected_list[best_idx]
+
+            selected.append(best_cand)
+            unselected.remove(best_cand)
+
+        reordered = [valid_pool[i] for i in selected] + [valid_pool[i] for i in unselected]
+        return reordered + tail
 
     def _state_relevance(self, scheme: dict, user_state: str) -> float:
         if not user_state:
