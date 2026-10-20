@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ExternalLink, Bookmark, BookmarkCheck, GitCompare, Building2, MapPin, Tag, FileText, Zap } from 'lucide-react';
+import { ExternalLink, Bookmark, BookmarkCheck, GitCompare, Building2, MapPin, Tag, FileText, Zap, Sparkles } from 'lucide-react';
 import type { SchemeCard } from '../api';
 import EligibilityBadge from './EligibilityBadge';
 import { useProfile } from '../App';
@@ -107,6 +107,21 @@ export default function SchemeCardComponent({ scheme, compareIds, onToggleCompar
               +{scheme.required_documents.length - 4} more
             </span>
           )}
+        </div>
+      )}
+
+      {/* Why Recommended Explainability */}
+      {scheme.why_recommended && scheme.why_recommended.length > 0 && (
+        <div className="mb-3 bg-emerald-50/70 border border-emerald-200/80 rounded-xl px-3 py-2 text-xs text-emerald-900">
+          <div className="font-semibold flex items-center gap-1 mb-1 text-[11px] text-emerald-800">
+            <Sparkles className="w-3 h-3 text-emerald-600" />
+            Why Recommended:
+          </div>
+          <ul className="list-disc list-inside space-y-0.5 text-[11px] text-emerald-900">
+            {scheme.why_recommended.map((reason, idx) => (
+              <li key={idx} className="leading-snug">{reason}</li>
+            ))}
+          </ul>
         </div>
       )}
 

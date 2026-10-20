@@ -66,3 +66,20 @@ async def get_scheme_by_slug(slug: str):
                 s["categories_list"] = []
             return s
     raise HTTPException(status_code=404, detail=f"Scheme with slug '{slug}' not found")
+
+
+@router.get("/schemes/{scheme_id}/similar")
+async def get_similar_schemes(scheme_id: int, top_k: int = Query(4, ge=1, le=10)):
+    engine = MLEngine.get()
+    engine.load()
+    scheme = engine.get_scheme(scheme_id)
+    if scheme is None:
+        raise HTTPException(status_code=404, detail=f"Scheme {scheme_id} not found")
+    similar = engine.get_similar_schemes(scheme_id, top_k=top_k)
+    return {
+        "scheme_id": scheme_id,
+        "scheme_name": scheme["name"],
+        "count": len(similar),
+        "results": similar,
+    }
+

@@ -1,7 +1,8 @@
 import { Outlet, Link, NavLink } from 'react-router-dom';
-import { Search, Bookmark, BarChart2, Shield, GitCompare, BookOpen } from 'lucide-react';
+import { Search, Bookmark, BarChart2, Shield, GitCompare, BookOpen, Sparkles } from 'lucide-react';
 
 const NAV = [
+  { to: '/recommendations', icon: Sparkles, label: 'Recommendations' },
   { to: '/search', icon: Search, label: 'Find Schemes' },
   { to: '/saved', icon: Bookmark, label: 'Saved' },
   { to: '/compare', icon: GitCompare, label: 'Compare' },

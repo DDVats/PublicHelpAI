@@ -31,6 +31,8 @@ export interface SchemeCard {
   application_mode: string;
   required_documents?: string[];
   cross_encoder_score?: number;
+  why_recommended?: string[];
+  rrf_score?: number;
 }
 
 export interface SchemeDetail extends SchemeCard {
@@ -121,3 +123,81 @@ export const compareSchemes = (schemeIds: number[], profile?: UserProfile) =>
   api.post('/compare', { scheme_ids: schemeIds, profile });
 export const getEvaluation = () => api.get('/evaluation');
 export const getDataQuality = () => api.get('/data-quality');
+
+export interface SimilarSchemeItem {
+  id: number;
+  name: string;
+  slug: string;
+  level: string;
+  state_ministry: string;
+  categories_raw?: string;
+  description: string;
+  benefits: string;
+  similarity_score: number;
+  match_pct: number;
+  shared_categories: string[];
+  official_link: string;
+  myscheme_url: string;
+  required_documents: string[];
+}
+
+export interface BundleSchemeItem {
+  id: number;
+  name: string;
+  slug: string;
+  level: string;
+  state_ministry: string;
+  benefit_role: string;
+  rationale: string;
+  eligibility: EligibilityInfo;
+  official_link: string;
+  myscheme_url: string;
+  required_documents: string[];
+}
+
+export interface ComplementaryBundle {
+  bundle_id: string;
+  title: string;
+  description: string;
+  target_persona: string;
+  icon: string;
+  schemes: BundleSchemeItem[];
+}
+
+export interface PersonaItem {
+  persona_id: string;
+  name: string;
+  tagline: string;
+  avatar: string;
+  description: string;
+  profile: UserProfile;
+}
+
+export interface PersonalizedFeedResponse {
+  top_matches: SchemeCard[];
+  bundles: ComplementaryBundle[];
+  similar_to_saved: SchemeCard[];
+  state_spotlight: SchemeCard[];
+  algorithm_info: {
+    architecture: string;
+    lexical_model: string;
+    dense_model: string;
+    diversity_algorithm: string;
+    device: string;
+    hardware: string;
+  };
+  active_profile_summary?: string;
+}
+
+export const getSimilarSchemes = (id: number, topK = 4) =>
+  api.get<{ scheme_id: number; scheme_name: string; count: number; results: SimilarSchemeItem[] }>(`/schemes/${id}/similar`, { params: { top_k: topK } });
+
+export const getPersonalizedFeed = (payload: { profile?: UserProfile; saved_ids?: number[]; top_k?: number }) =>
+  api.post<PersonalizedFeedResponse>('/recommend/feed', payload);
+
+export const getPersonas = () =>
+  api.get<{ personas: PersonaItem[] }>('/recommend/personas');
+
+export const getBundles = (params?: { state?: string; gender?: string; age?: number }) =>
+  api.get<{ bundles: ComplementaryBundle[] }>('/recommend/bundles', { params });
+

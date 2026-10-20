@@ -1,31 +1,31 @@
 query_id,query,category,has_labels,tfidf_p5,tfidf_ndcg5,tfidf_mrr,emb_p5,emb_ndcg5,emb_mrr,hybrid_p5,hybrid_ndcg5,hybrid_mrr
-Q01,scholarship for SC ST students higher education,scholarships,True,0.0,0.0,0.024390243902439025,0.0,0.0,0.0,0.0,0.0,0.02564102564102564
-Q02,scholarship for girl students merit,scholarships,True,0.0,0.0,0.07692307692307693,0.0,0.0,0.0,0.0,0.0,0.000700770847932726
-Q03,OBC minority scholarship postgraduate,scholarships,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.023809523809523808
-Q04,scholarship disabled students study abroad,scholarships,True,0.8,0.8687949224876582,1.0,0.4,0.5087403079104241,1.0,0.6,0.7227265726449519,1.0
-Q05,farmer income support PM Kisan,agriculture,True,0.2,0.16812753627111746,0.25,0.4,0.5855700749881525,1.0,0.2,0.16812753627111746,0.25
-Q06,crop insurance scheme farmer premium,agriculture,True,0.0,0.0,0.1,0.0,0.0,0.1,0.0,0.0,0.1
-Q07,irrigation drip sprinkler subsidy farmer,agriculture,True,0.2,0.23463936301137822,0.3333333333333333,0.0,0.0,0.16666666666666666,0.4,0.38364913903790027,0.25
-Q08,agricultural loan interest subsidy kisan credit card,agriculture,True,0.2,0.3065735963827292,0.3333333333333333,0.2,0.6131471927654584,1.0,0.2,0.6131471927654584,1.0
-Q09,housing scheme for poor urban slum,housing,True,0.0,0.0,0.05555555555555555,0.0,0.0,0.0,0.2,0.2640681225725909,0.25
-Q10,rural housing BPL below poverty line,housing,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.07692307692307693
-Q11,maternity benefit scheme pregnant women delivery,women_welfare,True,0.0,0.0,0.125,0.0,0.0,0.1111111111111111,0.0,0.0,0.001430615164520744
-Q12,women self help group loan entrepreneur,women_welfare,True,0.0,0.0,0.045454545454545456,0.0,0.0,0.0,0.0,0.0,0.00819672131147541
-Q13,widow pension benefit support,women_welfare,True,0.0,0.0,0.07692307692307693,0.0,0.0,0.16666666666666666,0.0,0.0,0.00129366106080207
-Q14,health insurance poor family government hospital,health,True,0.0,0.0,0.125,0.0,0.0,0.05,0.0,0.0,0.0007401924500370096
-Q15,disability pension benefits persons with disabilities,health,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.015151515151515152
-Q16,skill training youth employment vocational,employment,True,0.4,0.4776237035032179,0.5,0.0,0.0,0.0,0.0,0.0,0.014705882352941176
-Q17,rural employment guarantee job,employment,True,0.0,0.0,0.045454545454545456,0.0,0.0,0.0,0.0,0.0,0.021739130434782608
-Q18,startup loan entrepreneur MSME small business,entrepreneurship,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.011764705882352941
-Q19,SC ST entrepreneur business loan subsidy,entrepreneurship,True,0.0,0.0,0.1111111111111111,0.0,0.0,0.020833333333333332,0.0,0.0,0.06666666666666667
+Q01,scholarship for SC ST students higher education,scholarships,True,0.0,0.0,0.024390243902439025,0.0,0.0,0.0,0.0,0.0,0.02040816326530612
+Q02,scholarship for girl students merit,scholarships,True,0.0,0.0,0.07692307692307693,0.0,0.0,0.0,0.0,0.0,0.004975124378109453
+Q03,OBC minority scholarship postgraduate,scholarships,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01694915254237288
+Q04,scholarship disabled students study abroad,scholarships,True,0.8,0.8687949224876582,1.0,0.4,0.5087403079104241,1.0,1.0,1.0,1.0
+Q05,farmer income support PM Kisan,agriculture,True,0.2,0.16812753627111746,0.25,0.4,0.5855700749881525,1.0,0.4,0.5413996682199069,1.0
+Q06,crop insurance scheme farmer premium,agriculture,True,0.0,0.0,0.1,0.0,0.0,0.1,0.0,0.0,0.14285714285714285
+Q07,irrigation drip sprinkler subsidy farmer,agriculture,True,0.2,0.23463936301137822,0.3333333333333333,0.0,0.0,0.16666666666666666,0.4,0.5307212739772434,0.5
+Q08,agricultural loan interest subsidy kisan credit card,agriculture,True,0.2,0.3065735963827292,0.3333333333333333,0.2,0.6131471927654584,1.0,0.2,0.38685280723454163,0.5
+Q09,housing scheme for poor urban slum,housing,True,0.0,0.0,0.05555555555555555,0.0,0.0,0.0,0.0,0.0,0.07142857142857142
+Q10,rural housing BPL below poverty line,housing,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.058823529411764705
+Q11,maternity benefit scheme pregnant women delivery,women_welfare,True,0.0,0.0,0.125,0.0,0.0,0.1111111111111111,0.0,0.0,0.043478260869565216
+Q12,women self help group loan entrepreneur,women_welfare,True,0.0,0.0,0.045454545454545456,0.0,0.0,0.0,0.0,0.0,0.047619047619047616
+Q13,widow pension benefit support,women_welfare,True,0.0,0.0,0.07692307692307693,0.0,0.0,0.16666666666666666,0.0,0.0,0.09090909090909091
+Q14,health insurance poor family government hospital,health,True,0.0,0.0,0.125,0.0,0.0,0.05,0.0,0.0,0.02631578947368421
+Q15,disability pension benefits persons with disabilities,health,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.010526315789473684
+Q16,skill training youth employment vocational,employment,True,0.4,0.4776237035032179,0.5,0.0,0.0,0.0,0.0,0.0,0.06666666666666667
+Q17,rural employment guarantee job,employment,True,0.0,0.0,0.045454545454545456,0.0,0.0,0.0,0.0,0.0,0.041666666666666664
+Q18,startup loan entrepreneur MSME small business,entrepreneurship,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02040816326530612
+Q19,SC ST entrepreneur business loan subsidy,entrepreneurship,True,0.0,0.0,0.1111111111111111,0.0,0.0,0.020833333333333332,0.2,0.2640681225725909,0.25
 Q20,old age pension senior citizen above 60,senior_citizens,True,0.4,0.4776237035032179,0.5,0.0,0.0,0.034482758620689655,0.2,0.18154179253735267,0.2
-Q21,mid day meal school children free lunch,education,True,0.0,0.0,0.0,0.0,0.0,0.03225806451612903,0.0,0.0,0.02040816326530612
-Q22,education loan interest subsidy student,education,True,0.2,0.15101961822780524,0.2,0.4,0.3973220069685352,0.5,0.4,0.5585075862632192,1.0
-Q23,ration card food grain BPL family subsidised,food,True,0.2,0.6131471927654584,1.0,0.0,0.0,0.0,0.0,0.0,0.008264462809917356
-Q24,Rajasthan student scholarship SC,state_specific,True,0.2,0.2960819109658652,0.5,0.0,0.0,0.0,0.0,0.0,0.030303030303030304
-Q25,Kerala fishermen welfare scheme accident,state_specific,True,0.0,0.0,0.14285714285714285,0.0,0.0,0.030303030303030304,0.0,0.0,0.011494252873563218
+Q21,mid day meal school children free lunch,education,True,0.0,0.0,0.0,0.0,0.0,0.03225806451612903,0.0,0.0,0.016129032258064516
+Q22,education loan interest subsidy student,education,True,0.2,0.15101961822780524,0.2,0.4,0.3973220069685352,0.5,0.2,0.3903800499921017,1.0
+Q23,ration card food grain BPL family subsidised,food,True,0.2,0.6131471927654584,1.0,0.0,0.0,0.0,0.0,0.0,0.07142857142857142
+Q24,Rajasthan student scholarship SC,state_specific,True,0.2,0.2960819109658652,0.5,0.0,0.0,0.0,0.0,0.0,0.125
+Q25,Kerala fishermen welfare scheme accident,state_specific,True,0.0,0.0,0.14285714285714285,0.0,0.0,0.030303030303030304,0.0,0.0,0.017241379310344827
 Q26,government help poor people,broad,False,,,,,,,,,
 Q27,financial assistance marginalized community,broad,False,,,,,,,,,
 Q28,social protection scheme backward class,broad,False,,,,,,,,,
-Q29,help paying for college minority family,paraphrase,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.008333333333333333
-Q30,support for widowed women living alone,paraphrase,True,0.0,0.0,0.14285714285714285,0.0,0.0,0.043478260869565216,0.0,0.0,0.0007272727272727272
+Q29,help paying for college minority family,paraphrase,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.018518518518518517
+Q30,support for widowed women living alone,paraphrase,True,0.0,0.0,0.14285714285714285,0.0,0.0,0.043478260869565216,0.0,0.0,0.04

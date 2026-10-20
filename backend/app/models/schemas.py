@@ -59,6 +59,8 @@ class SchemeCard(BaseModel):
     data_completeness_score: float
     required_documents: Optional[list[str]] = Field(default_factory=list)
     cross_encoder_score: Optional[float] = None
+    why_recommended: Optional[list[str]] = Field(default_factory=list)
+    rrf_score: Optional[float] = None
 
 
 class SchemeDetail(BaseModel):
@@ -134,3 +136,68 @@ class SavedScheme(BaseModel):
 class CompareRequest(BaseModel):
     scheme_ids: list[int] = Field(..., min_length=2, max_length=5)
     profile: Optional[UserProfile] = None
+
+
+class SimilarSchemeItem(BaseModel):
+    id: int
+    name: str
+    slug: str
+    level: str
+    state_ministry: str
+    categories_raw: Optional[str] = None
+    description: str
+    benefits: str
+    similarity_score: float
+    match_pct: float
+    shared_categories: list[str] = Field(default_factory=list)
+    official_link: str
+    myscheme_url: str
+    required_documents: list[str] = Field(default_factory=list)
+
+
+class BundleSchemeItem(BaseModel):
+    id: int
+    name: str
+    slug: str
+    level: str
+    state_ministry: str
+    benefit_role: str
+    rationale: str
+    eligibility: EligibilityInfo
+    official_link: str
+    myscheme_url: str
+    required_documents: list[str] = Field(default_factory=list)
+
+
+class ComplementaryBundle(BaseModel):
+    bundle_id: str
+    title: str
+    description: str
+    target_persona: str
+    icon: str
+    schemes: list[BundleSchemeItem]
+
+
+class PersonaItem(BaseModel):
+    persona_id: str
+    name: str
+    tagline: str
+    avatar: str
+    description: str
+    profile: UserProfile
+
+
+class FeedRequest(BaseModel):
+    profile: Optional[UserProfile] = None
+    saved_ids: Optional[list[int]] = Field(default_factory=list)
+    top_k: int = Field(8, ge=1, le=50)
+
+
+class PersonalizedFeedResponse(BaseModel):
+    top_matches: list[SchemeCard]
+    bundles: list[ComplementaryBundle]
+    similar_to_saved: list[SchemeCard]
+    state_spotlight: list[SchemeCard]
+    algorithm_info: dict
+    active_profile_summary: Optional[str] = None
+

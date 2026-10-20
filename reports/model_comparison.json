@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T12:00:55.722416+00:00",
+  "generated_at": "2026-10-20T09:36:41.622010+00:00",
   "n_queries": 30,
   "n_queries_with_labels": 27,
   "models": {
@@ -12,7 +12,7 @@
       "ndcg_at_10": 0.18619051206981066,
       "mrr": 0.2106738188039001,
       "ap": 0.144199784425023,
-      "avg_latency_ms": 8.846666666666668,
+      "avg_latency_ms": 8.603333333333333,
       "n_queries_with_labels": 27
     },
     "Embedding": {
@@ -24,21 +24,53 @@
       "ndcg_at_10": 0.11280885654812167,
       "mrr": 0.15762221822545155,
       "ap": 0.08778118570755222,
-      "avg_latency_ms": 5.239999999999999,
+      "avg_latency_ms": 13.346666666666666,
+      "n_queries_with_labels": 27
+    },
+    "Hybrid RRF": {
+      "p_at_5": 0.0888888888888889,
+      "p_at_10": 0.06666666666666667,
+      "r_at_5": 0.12839506172839507,
+      "r_at_10": 0.19135802469135804,
+      "ndcg_at_5": 0.11280658220836871,
+      "ndcg_at_10": 0.14235473413959623,
+      "mrr": 0.1865649160648777,
+      "ap": 0.1254024578682663,
+      "avg_latency_ms": 63.67333333333333,
+      "n_queries_with_labels": 27
+    },
+    "Hybrid RRF + MMR": {
+      "p_at_5": 0.0962962962962963,
+      "p_at_10": 0.07037037037037036,
+      "r_at_5": 0.1388888888888889,
+      "r_at_10": 0.20679012345679013,
+      "ndcg_at_5": 0.12203569313087916,
+      "ndcg_at_10": 0.15411615620560562,
+      "mrr": 0.20004996987623216,
+      "ap": 0.13473608084607014,
+      "avg_latency_ms": 388.86333333333334,
       "n_queries_with_labels": 27
     },
     "Hybrid": {
-      "p_at_5": 0.08148148148148149,
-      "p_at_10": 0.06296296296296296,
-      "r_at_5": 0.12407407407407407,
-      "r_at_10": 0.18395061728395062,
-      "ndcg_at_5": 0.10710251637379965,
-      "ndcg_at_10": 0.13642968544625614,
-      "mrr": 0.16289977788922502,
-      "ap": 0.10807032551145267,
-      "avg_latency_ms": 548.4933333333333,
+      "p_at_5": 0.0962962962962963,
+      "p_at_10": 0.07037037037037036,
+      "r_at_5": 0.1388888888888889,
+      "r_at_10": 0.20679012345679013,
+      "ndcg_at_5": 0.12203569313087916,
+      "ndcg_at_10": 0.15411615620560562,
+      "mrr": 0.20004996987623216,
+      "ap": 0.13473608084607014,
+      "avg_latency_ms": 388.86333333333334,
       "n_queries_with_labels": 27
     }
   },
-  "disclaimer": "PRELIMINARY EVALUATION: Relevance labels are manually curated for a small subset of queries. Results are indicative only and should not be treated as population-level performance estimates."
+  "recsys_metrics": {
+    "catalog_coverage_pct": 100.0,
+    "total_unique_schemes_recommended": 2066,
+    "total_catalog_size": 2066,
+    "intra_list_diversity": 0.7102,
+    "personalization_dissimilarity": 0.3163,
+    "personas_evaluated": 4
+  },
+  "disclaimer": "EVALUATION BENCHMARK: 30 curated civic test queries evaluated across lexical (TF-IDF), dense embedding, Reciprocal Rank Fusion (RRF), and Maximal Marginal Relevance (MMR) diversity reranking."
 }

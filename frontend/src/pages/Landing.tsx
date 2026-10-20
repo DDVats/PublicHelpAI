@@ -52,9 +52,22 @@ export default function Landing() {
             </button>
           </form>
 
-          <Link to="/search" className="text-civic-200 hover:text-white text-sm underline underline-offset-2">
-            Or browse all schemes with filters →
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <Link
+              to="/recommendations"
+              className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-saffron-500 to-amber-500 hover:from-saffron-600 hover:to-amber-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 text-base"
+            >
+              <span>Explore Personalized Recommendations</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link
+              to="/search"
+              className="w-full sm:w-auto px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl border border-white/30 backdrop-blur transition-all flex items-center justify-center gap-2 text-sm"
+            >
+              <Search className="w-4 h-4" />
+              <span>Keyword Search & Browse</span>
+            </Link>
+          </div>
         </div>
       </section>
 

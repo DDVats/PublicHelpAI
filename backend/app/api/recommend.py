@@ -33,7 +33,7 @@ async def recommend(req: RecommendRequest):
 
     stats = engine.get_stats()
     mode = "Profile-based ranking" if not query else (
-        "2-Stage Neural Retrieval: all-MiniLM-L6-v2 + Cross-Encoder Reranker"
+        "Hybrid Reciprocal Rank Fusion (RRF: all-MiniLM-L6-v2 + TF-IDF) + MMR Diversity"
         if stats["has_embeddings"] else "TF-IDF"
     )
     return {
@@ -45,3 +45,37 @@ async def recommend(req: RecommendRequest):
         "has_embeddings": stats["has_embeddings"],
         "model_used": mode,
     }
+
+
+@router.post("/recommend/feed")
+async def recommend_feed(req: dict = None):
+    engine = MLEngine.get()
+    engine.load()
+    req = req or {}
+    raw_profile = req.get("profile") or {}
+    saved_ids = req.get("saved_ids") or []
+    top_k = req.get("top_k", 8)
+
+    feed = engine.get_recommended_feed(profile=raw_profile, saved_ids=saved_ids, top_k=top_k)
+    return feed
+
+
+@router.get("/recommend/bundles")
+async def get_bundles(state: str = None, gender: str = None, age: int = None):
+    engine = MLEngine.get()
+    engine.load()
+    profile = {}
+    if state: profile["state"] = state
+    if gender: profile["gender"] = gender
+    if age: profile["age"] = age
+
+    bundles = engine.get_complementary_bundles(profile=profile)
+    return {"bundles": bundles}
+
+
+@router.get("/recommend/personas")
+async def get_personas():
+    engine = MLEngine.get()
+    engine.load()
+    return {"personas": engine.get_personas()}
+

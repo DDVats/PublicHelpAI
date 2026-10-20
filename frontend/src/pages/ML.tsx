@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BarChart2, Database, Cpu, GitBranch, Loader2, AlertTriangle, Layers, Zap } from 'lucide-react';
+import { BarChart2, Database, Cpu, GitBranch, Loader2, AlertTriangle, Layers, Zap, Sparkles } from 'lucide-react';
 import { getStats, getEvaluation, getDataQuality } from '../api';
 import type { Stats } from '../api';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
@@ -17,11 +17,21 @@ interface ModelMetrics {
   n_queries_with_labels: number;
 }
 
+interface RecSysMetrics {
+  catalog_coverage_pct: number;
+  total_unique_schemes_recommended: number;
+  total_catalog_size: number;
+  intra_list_diversity: number;
+  personalization_dissimilarity: number;
+  personas_evaluated: number;
+}
+
 interface EvaluationData {
   generated_at?: string;
   n_queries?: number;
   n_queries_with_labels?: number;
   models?: Record<string, ModelMetrics>;
+  recsys_metrics?: RecSysMetrics;
   disclaimer?: string;
 }
 
@@ -212,10 +222,61 @@ export default function ML() {
               </div>
             </div>
 
+            {/* Recommender Systems Domain Metrics Card */}
+            {evaluation?.recsys_metrics && (
+              <div className="card p-6 border-l-4 border-l-saffron-500 bg-gradient-to-r from-white to-saffron-50/20">
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+                  <div>
+                    <h2 className="font-bold text-gray-900 text-lg flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-saffron-600" /> Recommender System Domain Metrics
+                    </h2>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Beyond keyword search: measured catalog coverage, intra-list diversity, and persona personalization dissimilarity.
+                    </p>
+                  </div>
+                  <span className="text-xs bg-saffron-100 text-saffron-800 px-3 py-1 rounded-full font-semibold">
+                    RecSys Academic Evaluation
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                  <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-2xs">
+                    <div className="text-2xl font-bold text-gray-900">
+                      {evaluation.recsys_metrics.catalog_coverage_pct.toFixed(1)}%
+                    </div>
+                    <div className="text-xs font-semibold text-gray-700 mt-1">Catalog Coverage</div>
+                    <div className="text-[11px] text-gray-500 mt-0.5">
+                      {evaluation.recsys_metrics.total_unique_schemes_recommended} / {evaluation.recsys_metrics.total_catalog_size} schemes reached (zero dead-end catalogue items)
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-2xs">
+                    <div className="text-2xl font-bold text-gray-900">
+                      {evaluation.recsys_metrics.intra_list_diversity.toFixed(4)}
+                    </div>
+                    <div className="text-xs font-semibold text-gray-700 mt-1">Intra-List Diversity (ILD)</div>
+                    <div className="text-[11px] text-gray-500 mt-0.5">
+                      Mean pairwise distance in Top-10 via MMR diversity re-ranking (λ=0.85)
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-2xs">
+                    <div className="text-2xl font-bold text-gray-900">
+                      {(evaluation.recsys_metrics.personalization_dissimilarity * 100).toFixed(1)}%
+                    </div>
+                    <div className="text-xs font-semibold text-gray-700 mt-1">Personalization Dissimilarity</div>
+                    <div className="text-[11px] text-gray-500 mt-0.5">
+                      Jaccard distance across {evaluation.recsys_metrics.personas_evaluated} citizen demographic personas
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Measured Evaluation Results */}
             <div className="card p-6">
               <div className="flex items-center justify-between mb-2">
-                <h2 className="font-semibold text-gray-900">Information Retrieval Evaluation (30 Queries)</h2>
+                <h2 className="font-semibold text-gray-900">Retrieval & Ranking Evaluation (30 Queries Benchmark)</h2>
                 {evaluation?.n_queries && (
                   <span className="text-xs bg-civic-50 text-civic-700 px-2 py-1 rounded border border-civic-200">
                     {evaluation.n_queries} Curated Queries · {evaluation.n_queries_with_labels} with Ground Truth
@@ -225,7 +286,7 @@ export default function ML() {
               <div className="flex items-center gap-2 text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-4">
                 <AlertTriangle className="w-4 h-4 shrink-0 text-amber-600" />
                 <span>
-                  <strong>Preliminary Benchmark:</strong> Ground-truth relevance judged across scholarships, agriculture, healthcare, housing, disability, and women welfare.
+                  <strong>Ablation Comparison:</strong> Evaluates Lexical TF-IDF baseline, Dense Sentence Embedding baseline, Reciprocal Rank Fusion (RRF), and MMR Diversity reranking.
                 </span>
               </div>
 
@@ -233,7 +294,7 @@ export default function ML() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-gray-50 border-b border-gray-200 text-xs text-gray-500">
-                      <th className="text-left p-3">Retrieval Model</th>
+                      <th className="text-left p-3">Retrieval & Recommender Model</th>
                       <th className="text-right p-3">Precision@5</th>
                       <th className="text-right p-3">Recall@5</th>
                       <th className="text-right p-3">NDCG@5</th>
@@ -243,20 +304,26 @@ export default function ML() {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(models).map(([name, m]) => (
-                      <tr key={name} className={`border-b border-gray-100 ${name === 'Hybrid' ? 'bg-civic-50/60 font-medium' : ''}`}>
-                        <td className="p-3 text-gray-900 font-medium flex items-center gap-2">
-                          {name === 'Hybrid' && <span className="w-2 h-2 rounded-full bg-civic-500"></span>}
-                          {name}
-                        </td>
-                        <td className="p-3 text-right font-mono text-gray-800">{m.p_at_5.toFixed(3)}</td>
-                        <td className="p-3 text-right font-mono text-gray-800">{m.r_at_5.toFixed(3)}</td>
-                        <td className="p-3 text-right font-mono text-gray-800">{m.ndcg_at_5.toFixed(3)}</td>
-                        <td className="p-3 text-right font-mono text-gray-800">{m.mrr.toFixed(3)}</td>
-                        <td className="p-3 text-right font-mono text-gray-800">{m.ap.toFixed(3)}</td>
-                        <td className="p-3 text-right font-mono text-gray-500">{m.avg_latency_ms.toFixed(0)} ms</td>
-                      </tr>
-                    ))}
+                    {Object.entries(models)
+                      .filter(([name]) => name !== 'Hybrid') // Avoid duplicate entry
+                      .map(([name, m]) => {
+                        const isPrimary = name.includes('MMR');
+                        return (
+                          <tr key={name} className={`border-b border-gray-100 ${isPrimary ? 'bg-civic-50/70 font-semibold' : ''}`}>
+                            <td className="p-3 text-gray-900 font-medium flex items-center gap-2">
+                              {isPrimary && <span className="w-2 h-2 rounded-full bg-civic-500 animate-pulse"></span>}
+                              {name}
+                              {isPrimary && <span className="text-[10px] bg-civic-100 text-civic-800 px-2 py-0.5 rounded-full font-bold ml-1">Current Default</span>}
+                            </td>
+                            <td className="p-3 text-right font-mono text-gray-800">{m.p_at_5.toFixed(3)}</td>
+                            <td className="p-3 text-right font-mono text-gray-800">{m.r_at_5.toFixed(3)}</td>
+                            <td className="p-3 text-right font-mono text-gray-800">{m.ndcg_at_5.toFixed(3)}</td>
+                            <td className="p-3 text-right font-mono text-gray-800">{m.mrr.toFixed(3)}</td>
+                            <td className="p-3 text-right font-mono text-gray-800">{m.ap.toFixed(3)}</td>
+                            <td className="p-3 text-right font-mono text-gray-500">{m.avg_latency_ms.toFixed(0)} ms</td>
+                          </tr>
+                        );
+                      })}
                     {Object.keys(models).length === 0 && (
                       <tr>
                         <td colSpan={7} className="p-4 text-center text-gray-400">

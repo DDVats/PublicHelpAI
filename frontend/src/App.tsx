@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useState, createContext, useContext } from 'react';
 import Layout from './components/Layout';
 import Landing from './pages/Landing';
+import Recommendations from './pages/Recommendations';
 import Search from './pages/Search';
 import SchemeDetailPage from './pages/SchemeDetail';
 import Compare from './pages/Compare';
@@ -51,6 +52,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
+          <Route path="recommendations" element={<Recommendations />} />
           <Route path="search" element={<Search />} />
           <Route path="schemes/:id" element={<SchemeDetailPage />} />
           <Route path="compare" element={<Compare />} />

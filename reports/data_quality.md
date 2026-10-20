@@ -1,6 +1,6 @@
 # PublicHelp AI — Data Quality Report
 
-**Generated:** 2026-10-19 17:30
+**Generated:** 2026-10-20 15:06
 **Source:** myscheme.gov.in (via GitHub dataset Aryan-Pardeshi/gov-myscheme-dataset)
 
 ## Record Counts

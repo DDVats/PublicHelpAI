@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ExternalLink, Bookmark, BookmarkCheck, ArrowLeft, CheckCircle, AlertCircle, FileText, ClipboardList, HelpCircle, Building2, MapPin, Loader2 } from 'lucide-react';
-import { getSchemeById } from '../api';
-import type { SchemeDetail } from '../api';
+import { ExternalLink, Bookmark, BookmarkCheck, ArrowLeft, CheckCircle, AlertCircle, FileText, ClipboardList, HelpCircle, Building2, MapPin, Loader2, Sparkles, Tag } from 'lucide-react';
+import { getSchemeById, getSimilarSchemes } from '../api';
+import type { SchemeDetail, SimilarSchemeItem } from '../api';
 import EligibilityBadge from '../components/EligibilityBadge';
 import { useProfile } from '../App';
 import { assess_eligibility_client } from '../utils/eligibilityClient';
@@ -10,6 +10,7 @@ import { assess_eligibility_client } from '../utils/eligibilityClient';
 export default function SchemeDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [scheme, setScheme] = useState<SchemeDetail | null>(null);
+  const [similarSchemes, setSimilarSchemes] = useState<SimilarSchemeItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const { savedIds, toggleSaved, profile } = useProfile();
@@ -18,7 +19,13 @@ export default function SchemeDetailPage() {
     if (!id) return;
     setLoading(true);
     getSchemeById(parseInt(id))
-      .then(r => setScheme(r.data))
+      .then(r => {
+        setScheme(r.data);
+        // Also fetch content-based similar schemes
+        getSimilarSchemes(parseInt(id), 4)
+          .then(simRes => setSimilarSchemes(simRes.data.results || []))
+          .catch(() => {});
+      })
       .catch(() => setError('Scheme not found.'))
       .finally(() => setLoading(false));
   }, [id]);
@@ -159,6 +166,75 @@ export default function SchemeDetailPage() {
               <HelpCircle className="w-5 h-5 text-gray-500" /> Frequently Asked Questions
             </h2>
             <p className="text-sm text-gray-700 whitespace-pre-wrap">{scheme.faqs}</p>
+          </div>
+        )}
+
+        {/* Similar & Alternative Schemes (Content-Based AI Recommendation) */}
+        {similarSchemes.length > 0 && (
+          <div className="card p-6 mb-6 border-l-4 border-l-civic-600">
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h2 className="font-bold text-gray-900 text-lg flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-civic-600" /> Similar & Complementary Schemes
+                </h2>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  Content-Based Nearest Neighbors derived from 384-dimensional dense semantic embeddings.
+                </p>
+              </div>
+              <span className="text-xs bg-civic-50 text-civic-700 border border-civic-200 px-2.5 py-1 rounded-full font-semibold">
+                Cosine Similarity Ranking
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {similarSchemes.map(item => (
+                <div key={item.id} className="p-4 rounded-xl border border-gray-200 bg-gray-50/60 hover:bg-white hover:shadow-xs transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="text-[11px] font-semibold text-gray-500 flex items-center gap-1">
+                        <Building2 className="w-3 h-3" />
+                        {item.level === 'Central Government' ? 'Central' : item.state_ministry}
+                      </span>
+                      <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
+                        {item.match_pct}% Match
+                      </span>
+                    </div>
+
+                    <Link to={`/schemes/${item.id}`} className="font-semibold text-sm text-gray-900 hover:text-civic-600 line-clamp-1">
+                      {item.name}
+                    </Link>
+
+                    <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                      {item.benefits || item.description}
+                    </p>
+
+                    {item.shared_categories.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {item.shared_categories.map(c => (
+                          <span key={c} className="text-[10px] px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-3 pt-2 border-t border-gray-200 flex items-center justify-between text-xs">
+                    <Link to={`/schemes/${item.id}`} className="text-civic-600 hover:underline font-medium">
+                      Explore scheme →
+                    </Link>
+                    <a
+                      href={item.official_link || item.myscheme_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-gray-600 flex items-center gap-1"
+                    >
+                      Official source <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
