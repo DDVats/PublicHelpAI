@@ -1,0 +1,18 @@
+{
+  "total_records": 2066,
+  "missing_name": "0 (0.0%)",
+  "missing_description": "0 (0.0%)",
+  "missing_eligibility_text": "1 (0.0%)",
+  "missing_benefits": "0 (0.0%)",
+  "missing_official_link": "0 (0.0%)",
+  "invalid_official_link_format": "0 (0.0%)",
+  "missing_documents_required": "4 (0.2%)",
+  "age_range_parsed": "387 (18.7%)",
+  "gender_parsed": "1519 (73.5%)",
+  "income_ceiling_parsed": "23 (1.1%)",
+  "caste_category_parsed": "354 (17.1%)",
+  "has_exclusions": "401 (19.4%)",
+  "empty_categories": "16 (0.8%)",
+  "low_completeness_under_70pct": "0 (0.0%)",
+  "sample_issues": []
+}

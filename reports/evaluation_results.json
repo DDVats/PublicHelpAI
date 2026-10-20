@@ -1,0 +1,596 @@
+{
+  "evaluation_date": "2026-10-16",
+  "n_queries_evaluated": 8,
+  "relevance_labelling": "keyword-overlap (preliminary; not population-level estimate)",
+  "k": 5,
+  "dataset_stats": {
+    "total_schemes": 2066,
+    "central_schemes": 527,
+    "state_schemes": 1539,
+    "total_states_uts": 80,
+    "top_states": {
+      "Puducherry": 186,
+      "Gujarat": 118,
+      "Goa": 116,
+      "Tamil Nadu": 108,
+      "Ministry of Social Justice and Empowerment": 85,
+      "Rajasthan": 83,
+      "Kerala": 72,
+      "Ministry of Education": 69,
+      "Chhattisgarh": 64,
+      "Meghalaya": 63
+    },
+    "has_embeddings": true,
+    "has_tfidf": true
+  },
+  "systems": [
+    {
+      "system": "tfidf_baseline",
+      "n_queries": 8,
+      "avg_precision_at_5": 0.85,
+      "avg_recall_at_5": 0.274,
+      "avg_ndcg_at_5": 0.928,
+      "per_query": [
+        {
+          "query": "scholarship for SC ST students higher education",
+          "description": "Scholarship queries for disadvantaged students",
+          "precision_at_5": 1.0,
+          "recall_at_5": 0.1,
+          "ndcg_at_5": 1.0,
+          "top_results": [
+            {
+              "id": 1461,
+              "name": "Post-Matric Scholarship for SC students",
+              "score": 0.4923
+            },
+            {
+              "id": 625,
+              "name": "Fee Waiver Scheme For SC/ST Students Pursuing Higher Education",
+              "score": 0.4759
+            },
+            {
+              "id": 1830,
+              "name": "Scholarship Scheme For Disabled Students To Study Abroad For Higher Education",
+              "score": 0.4718
+            },
+            {
+              "id": 1618,
+              "name": "State Agriculture Scholarship for B.Sc. & M.Sc. Agriculture",
+              "score": 0.4709
+            },
+            {
+              "id": 1800,
+              "name": "Savitribai Phule Scholarship For V.J.N.T. And S.B.C. Girl Students Studying In 5th To 7th Standard",
+              "score": 0.4648
+            }
+          ]
+        },
+        {
+          "query": "PM Awas Yojana housing rural poor",
+          "description": "Housing scheme for rural BPL households",
+          "precision_at_5": 0.4,
+          "recall_at_5": 0.4,
+          "ndcg_at_5": 0.928,
+          "top_results": [
+            {
+              "id": 1778,
+              "name": "Sardar Patel Awas Yojana",
+              "score": 0.475
+            },
+            {
+              "id": 231,
+              "name": "Credit Based Schemes For SC - Aajeevika Micro-Finance Yojana (Livelihood Microfinance Scheme)",
+              "score": 0.4351
+            },
+            {
+              "id": 1478,
+              "name": "PM Swamitva Yojana",
+              "score": 0.4252
+            },
+            {
+              "id": 1339,
+              "name": "Old Age Home (Sahara)",
+              "score": 0.4242
+            },
+            {
+              "id": 18,
+              "name": "Atal Asra Yojana",
+              "score": 0.4228
+            }
+          ]
+        },
+        {
+          "query": "women self help group loan entrepreneurship",
+          "description": "Entrepreneurship schemes for women",
+          "precision_at_5": 1.0,
+          "recall_at_5": 0.444,
+          "ndcg_at_5": 0.97,
+          "top_results": [
+            {
+              "id": 656,
+              "name": "Grant-in-Aid Scheme To Provide Financial Assistance To The Mahila Mandals/ Women's Self-help Groups (SWAWLAMBHAN)",
+              "score": 0.4673
+            },
+            {
+              "id": 1740,
+              "name": "Soft Loan Scheme for Women Entrepreneurs",
+              "score": 0.4631
+            },
+            {
+              "id": 823,
+              "name": "Indira Mahila Shakti Udyam Protsahan Yojana",
+              "score": 0.4288
+            },
+            {
+              "id": 475,
+              "name": "Entrepreneurship Development by SC & ST Women in Science Technology Engineering Mathematics",
+              "score": 0.424
+            },
+            {
+              "id": 231,
+              "name": "Credit Based Schemes For SC - Aajeevika Micro-Finance Yojana (Livelihood Microfinance Scheme)",
+              "score": 0.4238
+            }
+          ]
+        },
+        {
+          "query": "old age pension scheme senior citizen",
+          "description": "Pension for elderly citizens",
+          "precision_at_5": 1.0,
+          "recall_at_5": 0.312,
+          "ndcg_at_5": 0.9,
+          "top_results": [
+            {
+              "id": 1981,
+              "name": "Uttar Pradesh Old Age Pension Scheme",
+              "score": 0.512
+            },
+            {
+              "id": 1359,
+              "name": "Old-Age Pension Scheme",
+              "score": 0.5085
+            },
+            {
+              "id": 1341,
+              "name": "Old Age Pension - Chandigarh",
+              "score": 0.5079
+            },
+            {
+              "id": 1343,
+              "name": "Old Age Pension Scheme - Punjab",
+              "score": 0.5046
+            },
+            {
+              "id": 1344,
+              "name": "Old Age Pension Scheme under Chief Minister's Uzhavar Padhukappu Thittam",
+              "score": 0.4857
+            }
+          ]
+        },
+        {
+          "query": "farmer crop insurance Rajasthan agriculture",
+          "description": "Agricultural insurance for Rajasthan farmers",
+          "precision_at_5": 1.0,
+          "recall_at_5": 0.119,
+          "ndcg_at_5": 0.911,
+          "top_results": [
+            {
+              "id": 199,
+              "name": "Bihar Rajya Fasal Sahayata Yojna",
+              "score": 0.4656
+            },
+            {
+              "id": 269,
+              "name": "Chhatraon Ke Liye Protsahan Rashi",
+              "score": 0.4577
+            },
+            {
+              "id": 951,
+              "name": "Khet Talai",
+              "score": 0.4527
+            },
+            {
+              "id": 1174,
+              "name": "Mini Sprinkler Sanyantr",
+              "score": 0.4526
+            },
+            {
+              "id": 433,
+              "name": "Diggy",
+              "score": 0.4493
+            }
+          ]
+        },
+        {
+          "query": "free medical treatment below poverty line BPL",
+          "description": "Healthcare schemes for BPL families",
+          "precision_at_5": 0.8,
+          "recall_at_5": 0.364,
+          "ndcg_at_5": 0.883,
+          "top_results": [
+            {
+              "id": 436,
+              "name": "Distress Relief Scheme",
+              "score": 0.4283
+            },
+            {
+              "id": 1930,
+              "name": "Thayi Bhagya Scheme(comprehensive Maternal Healthcare)",
+              "score": 0.426
+            },
+            {
+              "id": 1364,
+              "name": "Odisha State Treatment Fund",
+              "score": 0.4235
+            },
+            {
+              "id": 465,
+              "name": "Educational Assistance to Children of Women Headed Families",
+              "score": 0.4226
+            },
+            {
+              "id": 601,
+              "name": "Free Medical Card for Media Persons",
+              "score": 0.4219
+            }
+          ]
+        },
+        {
+          "query": "disability pension handicapped person",
+          "description": "Disability support schemes",
+          "precision_at_5": 0.6,
+          "recall_at_5": 0.3,
+          "ndcg_at_5": 0.937,
+          "top_results": [
+            {
+              "id": 402,
+              "name": "Pension To The Disabled Person",
+              "score": 0.4795
+            },
+            {
+              "id": 1188,
+              "name": "Modified Special Wheel Chairs for Persons Affected with Cerebral Palsy",
+              "score": 0.4441
+            },
+            {
+              "id": 1041,
+              "name": "Maintenance Allowance to Intellectually Disabled Persons",
+              "score": 0.4413
+            },
+            {
+              "id": 1509,
+              "name": "Pension Scheme for Destitute Transgender",
+              "score": 0.4351
+            },
+            {
+              "id": 382,
+              "name": "Deen Dayal Divyangjan Pension Scheme - Assam",
+              "score": 0.434
+            }
+          ]
+        },
+        {
+          "query": "maternity benefit scheme pregnant women",
+          "description": "Maternity benefit schemes",
+          "precision_at_5": 1.0,
+          "recall_at_5": 0.156,
+          "ndcg_at_5": 0.898,
+          "top_results": [
+            {
+              "id": 1048,
+              "name": "Maternity Benefit (A.B.O.C.W.W.B)",
+              "score": 0.5018
+            },
+            {
+              "id": 1062,
+              "name": "Maternity Benefit Scheme (APB&OCWWB)",
+              "score": 0.4962
+            },
+            {
+              "id": 1063,
+              "name": "Maternity Benefit Scheme (UKBOCWWB)",
+              "score": 0.4934
+            },
+            {
+              "id": 1039,
+              "name": "Maternity Assistance Scheme (PBAOCWWB)",
+              "score": 0.49
+            },
+            {
+              "id": 1060,
+              "name": "Maternity Benefit Scheme (HBOCWWB)",
+              "score": 0.4887
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "system": "hybrid_profile_aware",
+      "n_queries": 8,
+      "avg_precision_at_5": 0.5,
+      "avg_recall_at_5": 0.168,
+      "avg_ndcg_at_5": 0.89,
+      "per_query": [
+        {
+          "query": "scholarship for SC ST students higher education",
+          "description": "Scholarship queries for disadvantaged students",
+          "precision_at_5": 1.0,
+          "recall_at_5": 0.102,
+          "ndcg_at_5": 0.995,
+          "top_results": [
+            {
+              "id": 1461,
+              "name": "Post-Matric Scholarship for SC students",
+              "score": 0.6017
+            },
+            {
+              "id": 1290,
+              "name": "National Overseas Scholarship For Scheduled Caste Etc. Candidates",
+              "score": 0.5528
+            },
+            {
+              "id": 232,
+              "name": "Credit Based Schemes For SC - Education Loan Scheme",
+              "score": 0.5434
+            },
+            {
+              "id": 1912,
+              "name": "Top Class Education For Scheduled Caste Students",
+              "score": 0.5428
+            },
+            {
+              "id": 386,
+              "name": "Dr. D.S. Kothari Post Doctoral Fellowships In Sciences",
+              "score": 0.5243
+            }
+          ]
+        },
+        {
+          "query": "PM Awas Yojana housing rural poor",
+          "description": "Housing scheme for rural BPL households",
+          "precision_at_5": 0.4,
+          "recall_at_5": 0.4,
+          "ndcg_at_5": 0.928,
+          "top_results": [
+            {
+              "id": 1778,
+              "name": "Sardar Patel Awas Yojana",
+              "score": 0.475
+            },
+            {
+              "id": 231,
+              "name": "Credit Based Schemes For SC - Aajeevika Micro-Finance Yojana (Livelihood Microfinance Scheme)",
+              "score": 0.4351
+            },
+            {
+              "id": 1478,
+              "name": "PM Swamitva Yojana",
+              "score": 0.4252
+            },
+            {
+              "id": 1339,
+              "name": "Old Age Home (Sahara)",
+              "score": 0.4242
+            },
+            {
+              "id": 18,
+              "name": "Atal Asra Yojana",
+              "score": 0.4228
+            }
+          ]
+        },
+        {
+          "query": "women self help group loan entrepreneurship",
+          "description": "Entrepreneurship schemes for women",
+          "precision_at_5": 0.0,
+          "recall_at_5": 0.0,
+          "ndcg_at_5": 0.947,
+          "top_results": [
+            {
+              "id": 1840,
+              "name": "Scholarship Scheme for Girl Children of Jute Mills / MSMEs Workers",
+              "score": 0.6302
+            },
+            {
+              "id": 351,
+              "name": "Dr Ambedkar Central Sector Scheme of Interest Subsidy on Educational Loans for Overseas Studies for Other Backward Classes (OBCs) and Economically Backward Classes (EBCs)",
+              "score": 0.6204
+            },
+            {
+              "id": 1870,
+              "name": "Sukanya Samriddhi Yojana",
+              "score": 0.6061
+            },
+            {
+              "id": 1682,
+              "name": "Sudakshya For Girls Child Scholarship",
+              "score": 0.5257
+            },
+            {
+              "id": 145,
+              "name": "Annai Teresa Ninaivu Marriage Assistance Scheme for Orphan Girls-I",
+              "score": 0.5179
+            }
+          ]
+        },
+        {
+          "query": "old age pension scheme senior citizen",
+          "description": "Pension for elderly citizens",
+          "precision_at_5": 0.2,
+          "recall_at_5": 0.077,
+          "ndcg_at_5": 1.0,
+          "top_results": [
+            {
+              "id": 1302,
+              "name": "NSAP - Indira Gandhi National Old Age Pension Scheme",
+              "score": 0.7041
+            },
+            {
+              "id": 812,
+              "name": "Indira Gandhi National Widow Pension Scheme",
+              "score": 0.68
+            },
+            {
+              "id": 1484,
+              "name": "Post Office Monthly Income Scheme",
+              "score": 0.6426
+            },
+            {
+              "id": 1691,
+              "name": "SWADHAR Greh (A Scheme For Women In Difficult Circumstances)",
+              "score": 0.6339
+            },
+            {
+              "id": 1379,
+              "name": "Pravasi Bharatiya Bima Yojana",
+              "score": 0.6327
+            }
+          ]
+        },
+        {
+          "query": "farmer crop insurance Rajasthan agriculture",
+          "description": "Agricultural insurance for Rajasthan farmers",
+          "precision_at_5": 1.0,
+          "recall_at_5": 0.217,
+          "ndcg_at_5": 0.917,
+          "top_results": [
+            {
+              "id": 269,
+              "name": "Chhatraon Ke Liye Protsahan Rashi",
+              "score": 0.6695
+            },
+            {
+              "id": 951,
+              "name": "Khet Talai",
+              "score": 0.6633
+            },
+            {
+              "id": 1174,
+              "name": "Mini Sprinkler Sanyantr",
+              "score": 0.6631
+            },
+            {
+              "id": 433,
+              "name": "Diggy",
+              "score": 0.6591
+            },
+            {
+              "id": 617,
+              "name": "Fawara Sanyantra",
+              "score": 0.6588
+            }
+          ]
+        },
+        {
+          "query": "free medical treatment below poverty line BPL",
+          "description": "Healthcare schemes for BPL families",
+          "precision_at_5": 0.4,
+          "recall_at_5": 0.154,
+          "ndcg_at_5": 0.567,
+          "top_results": [
+            {
+              "id": 1070,
+              "name": "Merit\u00c2\u00b7cum\u00c2\u00b7Means Scholarships For Under Graduate Studies In Various Branches Of Agriculture And Animal Science Subjects",
+              "score": 0.5704
+            },
+            {
+              "id": 1396,
+              "name": "Petrol Subsidy To Persons With Disability",
+              "score": 0.5054
+            },
+            {
+              "id": 1097,
+              "name": "Mahatma Jyotirao Phule Jan Arogya Yojana",
+              "score": 0.4873
+            },
+            {
+              "id": 94,
+              "name": "Assam Orunodoi Scheme",
+              "score": 0.4745
+            },
+            {
+              "id": 6,
+              "name": "Atal Amrit Abhiyan Scheme",
+              "score": 0.4381
+            }
+          ]
+        },
+        {
+          "query": "disability pension handicapped person",
+          "description": "Disability support schemes",
+          "precision_at_5": 0.6,
+          "recall_at_5": 0.3,
+          "ndcg_at_5": 0.937,
+          "top_results": [
+            {
+              "id": 402,
+              "name": "Pension To The Disabled Person",
+              "score": 0.4795
+            },
+            {
+              "id": 1188,
+              "name": "Modified Special Wheel Chairs for Persons Affected with Cerebral Palsy",
+              "score": 0.4441
+            },
+            {
+              "id": 1041,
+              "name": "Maintenance Allowance to Intellectually Disabled Persons",
+              "score": 0.4413
+            },
+            {
+              "id": 1509,
+              "name": "Pension Scheme for Destitute Transgender",
+              "score": 0.4351
+            },
+            {
+              "id": 382,
+              "name": "Deen Dayal Divyangjan Pension Scheme - Assam",
+              "score": 0.434
+            }
+          ]
+        },
+        {
+          "query": "maternity benefit scheme pregnant women",
+          "description": "Maternity benefit schemes",
+          "precision_at_5": 0.4,
+          "recall_at_5": 0.095,
+          "ndcg_at_5": 0.827,
+          "top_results": [
+            {
+              "id": 1870,
+              "name": "Sukanya Samriddhi Yojana",
+              "score": 0.6182
+            },
+            {
+              "id": 1840,
+              "name": "Scholarship Scheme for Girl Children of Jute Mills / MSMEs Workers",
+              "score": 0.6169
+            },
+            {
+              "id": 351,
+              "name": "Dr Ambedkar Central Sector Scheme of Interest Subsidy on Educational Loans for Overseas Studies for Other Backward Classes (OBCs) and Economically Backward Classes (EBCs)",
+              "score": 0.616
+            },
+            {
+              "id": 968,
+              "name": "Ladli Beti Scheme",
+              "score": 0.528
+            },
+            {
+              "id": 406,
+              "name": "Delhi Ladli Scheme",
+              "score": 0.5267
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Relevance labels derived from keyword overlap with query terms, not manual judgement",
+    "Small evaluation set (8 queries) \u2014 not statistically representative",
+    "No held-out test users \u2014 evaluation is indicative only",
+    "Embeddings may not be cached on first run \u2014 TF-IDF baseline used instead"
+  ]
+}

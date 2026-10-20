@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-10-19T12:00:55.722416+00:00",
+  "n_queries": 30,
+  "n_queries_with_labels": 27,
+  "models": {
+    "TF-IDF": {
+      "p_at_5": 0.10370370370370371,
+      "p_at_10": 0.08888888888888889,
+      "r_at_5": 0.15925925925925924,
+      "r_at_10": 0.2759259259259259,
+      "ndcg_at_5": 0.13309746470809067,
+      "ndcg_at_10": 0.18619051206981066,
+      "mrr": 0.2106738188039001,
+      "ap": 0.144199784425023,
+      "avg_latency_ms": 8.846666666666668,
+      "n_queries_with_labels": 27
+    },
+    "Embedding": {
+      "p_at_5": 0.05185185185185186,
+      "p_at_10": 0.05185185185185185,
+      "r_at_5": 0.07037037037037036,
+      "r_at_10": 0.1425925925925926,
+      "ndcg_at_5": 0.07795479935676186,
+      "ndcg_at_10": 0.11280885654812167,
+      "mrr": 0.15762221822545155,
+      "ap": 0.08778118570755222,
+      "avg_latency_ms": 5.239999999999999,
+      "n_queries_with_labels": 27
+    },
+    "Hybrid": {
+      "p_at_5": 0.08148148148148149,
+      "p_at_10": 0.06296296296296296,
+      "r_at_5": 0.12407407407407407,
+      "r_at_10": 0.18395061728395062,
+      "ndcg_at_5": 0.10710251637379965,
+      "ndcg_at_10": 0.13642968544625614,
+      "mrr": 0.16289977788922502,
+      "ap": 0.10807032551145267,
+      "avg_latency_ms": 548.4933333333333,
+      "n_queries_with_labels": 27
+    }
+  },
+  "disclaimer": "PRELIMINARY EVALUATION: Relevance labels are manually curated for a small subset of queries. Results are indicative only and should not be treated as population-level performance estimates."
+}

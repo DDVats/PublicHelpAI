@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-10-16T17:56:47.670037+00:00",
+  "total_records": 2066,
+  "duplicates_removed": 0,
+  "missing_eligibility_text": 1,
+  "missing_exclusions": 1665,
+  "age_parsed_count": 381,
+  "gender_parsed_count": 455,
+  "income_parsed_count": 79,
+  "avg_completeness": 0.677
+}
