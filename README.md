@@ -171,6 +171,17 @@ score = 0.35 × semantic_sim + 0.25 × profile_match + 0.20 × state_relevance
 
 ---
 
+## Project Artifacts & Presentations
+
+- **Executive Presentation Deck (PowerPoint)**: [`PublicHelp_AI_Presentation.pptx`](file:///home/vatsdd/Downloads/government/PublicHelp_AI_Presentation.pptx) (18 Widescreen Slides with embedded metrics and architecture)
+- **Executive Presentation Deck (PDF)**: [`PublicHelp_AI_Presentation.pdf`](file:///home/vatsdd/Downloads/government/PublicHelp_AI_Presentation.pdf)
+- **Master Engineering & Research Report (Markdown)**: [`FINAL_PROJECT_REPORT.md`](file:///home/vatsdd/Downloads/government/FINAL_PROJECT_REPORT.md)
+- **Master Engineering & Research Report (PDF)**: [`FINAL_PROJECT_REPORT.pdf`](file:///home/vatsdd/Downloads/government/FINAL_PROJECT_REPORT.pdf)
+- **Viva Presentation Guide**: [`PRESENTATION_GUIDE.md`](file:///home/vatsdd/Downloads/government/PRESENTATION_GUIDE.md)
+- **Comprehensive Master Documentation**: [`PROJECT_DOCUMENTATION_COMPLETE_GUIDE.md`](file:///home/vatsdd/Downloads/government/PROJECT_DOCUMENTATION_COMPLETE_GUIDE.md)
+
+---
+
 ## Acceptance Criteria Status
 
 | Criterion | Status |
@@ -184,7 +195,9 @@ score = 0.35 × semantic_sim + 0.25 × profile_match + 0.20 × state_relevance
 | Interface polished and responsive | ✅ |
 | Works without paid API keys | ✅ |
 | CPU fallback (no CUDA required) | ✅ |
-| 63 / 63 tests passing | ✅ |
+| 70 / 70 automated tests passing | ✅ |
+| Reciprocal Rank Fusion (RRF) + Vectorized MMR | ✅ |
+| Multi-Persona Simulation & Complementary Bundles | ✅ |
 | No placeholder buttons/routes | ✅ |
 | Limitations documented | ✅ |
 
@@ -203,5 +216,6 @@ score = 0.35 × semantic_sim + 0.25 × profile_match + 0.20 × state_relevance
 Dataset: public [gov-myscheme-dataset](https://github.com/Aryan-Pardeshi/gov-myscheme-dataset).  
 ML model: `sentence-transformers/all-MiniLM-L6-v2` (Apache 2.0).  
 Original scheme data from `myscheme.gov.in` (Government of India).
+
 
 
